@@ -1,0 +1,48 @@
+{
+  "name": "DotProduct-Task-Backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashwi07/DotProduct-Task-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ashwi07/DotProduct-Task-Backend/issues"
+  },
+  "homepage": "https://github.com/Ashwi07/DotProduct-Task-Backend#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.18",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/jwk-to-pem": "^2.0.3",
+    "eslint": "^9.26.0",
+    "globals": "^16.0.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.803.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.17.1",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "jwk-to-pem": "^2.0.7",
+    "mongoose": "^8.14.1",
+    "node-fetch": "^3.3.2"
+  }
+}
