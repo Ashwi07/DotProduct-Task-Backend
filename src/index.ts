@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Express} from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import { Application, Request, Response } from "express";
@@ -11,6 +11,7 @@ import { notFoundHandler } from "./middlewares/not-found";
 
 import { userRouter, masterExpenseTypeRouter } from "./routes";
 import { uploadSeeds } from "./lib/seederFunction";
+import { setupSwagger } from "./lib/swagger";
 
 export const createServer = async (): Promise<Application> => {
   dotenv.config();
@@ -18,7 +19,7 @@ export const createServer = async (): Promise<Application> => {
   const port = process.env.PORT || 8000;
   const dbUrl = process.env.MONGO_URL || "mongodb://localhost:27017";
   const mongoCertificatePath = process.env.MONGO_CERTIFICATE_PATH || null;
-  const app: Application = express();
+  const app: Express = express();
 
   //if certificate path is provided add ssl properties as mongo params
   let mongoParams: mongoParamsDTO = {};
@@ -71,6 +72,7 @@ export const createServer = async (): Promise<Application> => {
   app.use(bodyParser.json({ limit: "200mb" }));
   app.use(helmet());
 
+  setupSwagger(app);
   app.get("/", (req, res) => {
     return res.status(200).send("Hello");
   });
@@ -92,8 +94,6 @@ export const createServer = async (): Promise<Application> => {
     res.status(err.status || 500);
     res.send("errors");
   });
-
-  console.log("dbUrl", dbUrl)
 
   //mongo connection
   mongoose
