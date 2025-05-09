@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
-import { MasterExpenseTypeService } from "../services";
+import { MasterRewardService } from "../services";
 import {
-  addMasterExpenseTypeDTO,
-  editMasterExpenseTypeDTO,
-} from "../dtos/masterExpenseType.dtos";
-class MasterExpenseTypeController {
+  addMasterRewardDTO,
+  editMasterRewardDTO,
+} from "../dtos/masterReward.dtos";
+class MasterRewardController {
   /***************************************** CRUD APIS START *********************************************/
 
   async getAll(req: Request, res: Response) {
     try {
-      const data = await MasterExpenseTypeService.getAll();
+      const data = await MasterRewardService.getAll();
 
       return res.status(200).json({
-        statusCode: 102101,
+        statusCode: 105101,
         userMessage: "Data fetched",
         message: "Data fetched successfully",
         data: data,
@@ -20,7 +20,7 @@ class MasterExpenseTypeController {
     } catch (e) {
       console.log("error => ", e);
       return res.status(500).json({
-        statusCode: 102102,
+        statusCode: 105102,
         userMessage: "Server Error",
         error: `Failed to fetch data`,
       });
@@ -31,25 +31,25 @@ class MasterExpenseTypeController {
     try {
       const { id } = req.params;
 
-      const data = await MasterExpenseTypeService.getById(id);
+      const data = await MasterRewardService.getById(id);
       if (data) {
         return res.status(200).json({
-          statusCode: 102201,
+          statusCode: 105201,
           userMessage: "Data fetched",
           message: "Data fetched successfully",
           data: data,
         });
       } else {
         return res.status(404).json({
-          statusCode: 102202,
-          userMessage: "Expense type does not exist",
+          statusCode: 105202,
+          userMessage: "Reward type does not exist",
           error: "Data not found",
         });
       }
     } catch (e) {
       console.log("error => ", e);
       return res.status(500).json({
-        statusCode: 102203,
+        statusCode: 105203,
         userMessage: "Server Error",
         error: "Failed to fetch data",
       });
@@ -58,15 +58,16 @@ class MasterExpenseTypeController {
 
   async create(req: Request, res: Response) {
     try {
-      const { name } = req.body;
+      const { name, amount } = req.body;
 
-      let payload: addMasterExpenseTypeDTO = {
+      let payload: addMasterRewardDTO = {
         name,
+        amount,
       };
 
-      const data = await MasterExpenseTypeService.create(payload);
+      const data = await MasterRewardService.create(payload);
       return res.status(200).json({
-        statusCode: 102301,
+        statusCode: 105301,
         userMessage: `Creation completed`,
         message: "Data created successfully",
         data: data,
@@ -78,13 +79,13 @@ class MasterExpenseTypeController {
         const duplicatedField = Object.keys(e.keyPattern)[0]; // Getting the first duplicated field
         const duplicatedValue = e.keyValue[duplicatedField]; // Getting the value that caused duplication
         return res.status(422).json({
-          statusCode: 102302,
-          userMessage: `Similar expense type already exists`,
+          statusCode: 105302,
+          userMessage: `Similar Reward type already exists`,
           error: `The data with the specified ${duplicatedField}: ${duplicatedValue} already exists`,
         });
       }
       return res.status(500).json({
-        statusCode: 102303,
+        statusCode: 105303,
         userMessage: `Server Error`,
         error: "Failed to create data",
       });
@@ -94,37 +95,37 @@ class MasterExpenseTypeController {
   async update(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const { name } = req.body;
+      const { name, amount } = req.body;
 
-      //check if expense type exists
-      const checkData = await MasterExpenseTypeService.checkData({
+      //check if reward type exists
+      const checkData = await MasterRewardService.checkData({
         _id: id,
         isDeleted: false,
       });
       if (checkData) {
-        let payload: editMasterExpenseTypeDTO = {
+        let payload: editMasterRewardDTO = {
           name,
         };
 
-        const data = await MasterExpenseTypeService.update(id, payload);
+        const data = await MasterRewardService.update(id, payload);
         if (data) {
           return res.status(200).json({
-            statusCode: 102401,
+            statusCode: 105401,
             userMessage: `Updation completed`,
             message: "Data updated successfully",
             data: data,
           });
         } else {
           return res.status(400).json({
-            statusCode: 102402,
+            statusCode: 105402,
             userMessage: `Updation failed`,
             error: "Failed to update data",
           });
         }
       } else {
         return res.status(404).json({
-          statusCode: 102403,
-          userMessage: `Expense Type does not exist`,
+          statusCode: 105403,
+          userMessage: `Reward Type does not exist`,
           error: "Data not found",
         });
       }
@@ -136,13 +137,13 @@ class MasterExpenseTypeController {
         const duplicatedValue = e.keyValue[duplicatedField]; // Getting the value that caused duplication
 
         return res.status(422).json({
-          statusCode: 102404,
-          userMessage: `Similar Expense Type already exist`,
+          statusCode: 105404,
+          userMessage: `Similar Reward Type already exist`,
           error: `The data with the specified ${duplicatedField}: ${duplicatedValue} already exists`,
         });
       }
       return res.status(500).json({
-        statusCode: 102405,
+        statusCode: 105405,
         userMessage: `Server Error`,
         error: "Failed to update data",
       });
@@ -158,8 +159,8 @@ class MasterExpenseTypeController {
       if (hard !== "true") {
         includeDelete = { isDeleted: false };
       }
-      //check if expense type exists
-      const checkData = await MasterExpenseTypeService.checkData({
+      //check if reward type exists
+      const checkData = await MasterRewardService.checkData({
         _id: id,
         ...includeDelete,
       });
@@ -167,32 +168,32 @@ class MasterExpenseTypeController {
       if (checkData) {
         //if hard is true hard delete, else soft delete
         if (hard === "true") {
-          const data = await MasterExpenseTypeService.delete(id);
+          const data = await MasterRewardService.delete(id);
           if (data) {
             return res.status(200).json({
-              statusCode: 102501,
+              statusCode: 105501,
               userMessage:
                 "Deletion successful, This action cannot be reverted",
               message: "Data hard deleted successfully",
             });
           } else {
             return res.status(400).json({
-              statusCode: 102502,
+              statusCode: 105502,
               userMessage: "Deletion failed",
               error: "Failed to hard delete data",
             });
           }
         } else {
-          const data = await MasterExpenseTypeService.remove(id);
+          const data = await MasterRewardService.remove(id);
           if (data) {
             return res.status(200).json({
-              statusCode: 102503,
+              statusCode: 105503,
               userMessage: "Deletion successful",
               message: "Data deleted successfully",
             });
           } else {
             return res.status(400).json({
-              statusCode: 102504,
+              statusCode: 105504,
               userMessage: "Deletion failed",
               error: "Failed to delete data",
             });
@@ -200,15 +201,15 @@ class MasterExpenseTypeController {
         }
       } else {
         return res.status(404).json({
-          statusCode: 102505,
-          userMessage: "Expense Type does not exist",
+          statusCode: 105505,
+          userMessage: "Reward Type does not exist",
           error: "Data not found",
         });
       }
     } catch (e) {
       console.log("error => ", e);
       return res.status(500).json({
-        statusCode: 102506,
+        statusCode: 105506,
         userMessage: "Server Error",
         error: "Failed to delete data",
       });
@@ -217,4 +218,4 @@ class MasterExpenseTypeController {
   /********************************************* CRUD APIS END *********************************************/
 }
 
-export default new MasterExpenseTypeController();
+export default new MasterRewardController();

@@ -25,7 +25,7 @@ const data = [
   },
 ];
 
-class MasterCountsSeeder {
+class MasterExpenseTypeSeeder {
   //check if table is empty
   async shouldRun() {
     return masterExpenseTypeModel
@@ -45,4 +45,4 @@ class MasterCountsSeeder {
   }
 }
 
-export default new MasterCountsSeeder();
+export default new MasterExpenseTypeSeeder();

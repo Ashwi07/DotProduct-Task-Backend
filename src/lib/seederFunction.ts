@@ -2,11 +2,22 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
 import { mongoParamsDTO } from "../dtos/mongo.dtos";
-import { masterExpensenseTypeSeeder } from "../db/seeders";
+import {
+  masterExpensenseTypeSeeder,
+  masterIncomeTypeSeeder,
+  masterRewardSeeder,
+  masterSavingsTypeSeeder,
+} from "../db/seeders";
+
 //list of all the seeds
 //order is important
 //seeds will run in the given order
-const seeds = [masterExpensenseTypeSeeder];
+const seeds = [
+  masterExpensenseTypeSeeder,
+  masterIncomeTypeSeeder,
+  masterSavingsTypeSeeder,
+  masterRewardSeeder,
+];
 
 export const uploadSeeds = async (exit = true) => {
   const dbUrl = process.env.MONGO_URL || "mongodb://localhost:27017";

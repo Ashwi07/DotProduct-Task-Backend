@@ -1,6 +1,6 @@
 import { body, param } from "express-validator";
 
-class MasterExpenseTypeValidator {
+class MasterRewardValidator {
   checkId() {
     return [
       param("id")
@@ -12,7 +12,7 @@ class MasterExpenseTypeValidator {
     ];
   }
 
-  checkCreateMasterExpenseType() {
+  checkCreateMasterReward() {
     return [
       body("name")
         .trim()
@@ -21,10 +21,16 @@ class MasterExpenseTypeValidator {
         .bail()
         .isString()
         .withMessage("Name must be a string"),
+      body("amount")
+        .notEmpty()
+        .withMessage("Amount is required")
+        .bail()
+        .isInt({ min: 1 })
+        .withMessage("Amount must be greater than 0"),
     ];
   }
 
-  checkUpdateMasterExpenseType() {
+  checkUpdateMasterReward() {
     return [
       param("id")
         .notEmpty()
@@ -40,8 +46,15 @@ class MasterExpenseTypeValidator {
         .bail()
         .isString()
         .withMessage("Name must be a string"),
+      body("amount")
+        .optional()
+        .notEmpty()
+        .withMessage("Amount is required")
+        .bail()
+        .isInt({ min: 1 })
+        .withMessage("Amount must be greater than 0"),
     ];
   }
 }
 
-export default new MasterExpenseTypeValidator();
+export default new MasterRewardValidator();

@@ -1,6 +1,6 @@
 import { body, param } from "express-validator";
 
-class MasterExpenseTypeValidator {
+class MasterSavingsTypeValidator {
   checkId() {
     return [
       param("id")
@@ -12,7 +12,7 @@ class MasterExpenseTypeValidator {
     ];
   }
 
-  checkCreateMasterExpenseType() {
+  checkCreateMasterSavingsType() {
     return [
       body("name")
         .trim()
@@ -24,7 +24,7 @@ class MasterExpenseTypeValidator {
     ];
   }
 
-  checkUpdateMasterExpenseType() {
+  checkUpdateMasterSavingsType() {
     return [
       param("id")
         .notEmpty()
@@ -44,4 +44,4 @@ class MasterExpenseTypeValidator {
   }
 }
 
-export default new MasterExpenseTypeValidator();
+export default new MasterSavingsTypeValidator();

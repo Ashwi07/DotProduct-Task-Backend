@@ -7,12 +7,10 @@ import {
 
 class MasterExpenseTypeService {
   /************************** CRUD SERVICES START **************************/
-  static async getAll(skip: number, limit: number) {
+  static async getAll() {
     return await masterExpenseTypeModel
       .find({ isDeleted: false })
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit);
+      .sort({ createdAt: -1 });
   }
 
   static async getById(id: string) {

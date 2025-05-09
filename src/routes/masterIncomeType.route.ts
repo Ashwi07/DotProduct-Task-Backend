@@ -1,7 +1,7 @@
 import express from "express";
 import Helper from "../middlewares/helper";
-import { masterExpenseTypeValidator } from "../middlewares/validators";
-import { masterExpenseTypeController } from "../controllers";
+import { masterIncomeTypeValidator } from "../middlewares/validators";
+import { masterIncomeTypeController } from "../controllers";
 import AuthMiddleware from "../middlewares/auth.middleware";
 
 const router = express.Router();
@@ -12,77 +12,62 @@ router.use(AuthMiddleware.verifyToken);
 /******************************* CRUD APIS START *******************************/
 /**
  * @swagger
- * /api/master-expense-type:
+ * /api/master-income-type:
  *  get:
- *    summary: Get all Master Expense Type
- *    tags: [Master Expense Type]
- *    parameters:
- *      - in: query
- *        name: page
- *        required: false
- *        schema:
- *          type: integer
- *          default: 1
- *        description: Page Number
- *      - in: query
- *        name: limit
- *        required: false
- *        schema:
- *          type: integer
- *          default: 20
- *        description: Page size
+ *    summary: Get all Master Income Type
+ *    tags: [Master Income Type]
  *    security:
  *      - BearerAuth: []
  *    responses:
  *      200:
- *        description: Master Expense List
+ *        description: Master Income List
  *      401:
  *        description: Invalid Token
  *      500:
  *        description: Server Error
  */
 //get all
-router.get("/", masterExpenseTypeController.getAll);
+router.get("/", masterIncomeTypeController.getAll);
 
 /**
  * @swagger
- * /api/master-expense-type/{id}:
+ * /api/master-income-type/{id}:
  *  get:
- *    summary: Get Master Expense Type by ID
- *    tags: [Master Expense Type]
+ *    summary: Get Master Income Type by ID
+ *    tags: [Master Income Type]
  *    parameters:
  *      - in: path
  *        name: id
  *        required: true
  *        schema:
  *          type: string
- *        description: Master Expense Type ID
+ *        description: Master Income Type ID
  *    security:
  *      - BearerAuth: []
  *    responses:
  *      200:
- *        description: Master Expense Type Fetched
+ *        description: Master Income Type Fetched
  *      401:
  *        description: Invalid Token
  *      404:
- *        description: Master Expense Type not found
+ *        description: Master Income Type not found
  *      500:
  *        description: Server Error
  */
 //get by id
 router.get(
   "/:id",
-  masterExpenseTypeValidator.checkId(),
+  masterIncomeTypeValidator.checkId(),
   Helper.handleValidationError,
-  masterExpenseTypeController.getById
+  masterIncomeTypeController.getById
 );
 
 /**
  * @swagger
- * /api/master-expense-type:
+ * /api/master-income-type:
  *  post:
- *    summary: Create Master Expense Type
- *    tags: [Master Expense Type]
+ *    summary: Create Master Income Type
+ *    tags: [Master Income Type]
  *    requestBody:
  *      required: true
  *      content:
@@ -94,38 +79,38 @@ router.get(
  *            properties:
  *              name:
  *                type: string
- *                example: Loan
+ *                example: Business
  *    security:
  *      - BearerAuth: []
  *    responses:
  *      200:
- *        description: Master Expense Type Created
+ *        description: Master Income Type Created
  *      422:
- *        description: Master Expense Type already exists in db
+ *        description: Master Income Type already exists in db
  *      500:
  *        description: Server Error
  */
 //create
 router.post(
   "/",
-  masterExpenseTypeValidator.checkCreateMasterExpenseType(),
+  masterIncomeTypeValidator.checkCreateMasterIncomeType(),
   Helper.handleValidationError,
-  masterExpenseTypeController.create
+  masterIncomeTypeController.create
 );
 
 /**
  * @swagger
- * /api/master-expense-type/{id}:
+ * /api/master-income-type/{id}:
  *  put:
- *    summary: Update Master Expense Type by ID
- *    tags: [Master Expense Type]
+ *    summary: Update Master Income Type by ID
+ *    tags: [Master Income Type]
  *    parameters:
  *      - in: path
  *        name: id
  *        required: true
  *        schema:
  *          type: string
- *        description: Master Expense Type ID
+ *        description: Master Income Type ID
  *    requestBody:
  *      required: true
  *      content:
@@ -135,42 +120,42 @@ router.post(
  *            properties:
  *              name:
  *                type: string
- *                example: Loan
+ *                example: Business
  *    security:
  *      - BearerAuth: []
  *    responses:
  *      200:
- *        description: Master Expense Type Updated
+ *        description: Master Income Type Updated
  *      400:
- *        description: Failed to update Master Expense Type
+ *        description: Failed to update Master Income Type
  *      401:
  *        description: Invalid Token
  *      404:
- *        description: Master Expense Type not found
+ *        description: Master Income Type not found
  *      500:
  *        description: Server Error
  */
 //update
 router.put(
   "/:id",
-  masterExpenseTypeValidator.checkUpdateMasterExpenseType(),
+  masterIncomeTypeValidator.checkUpdateMasterIncomeType(),
   Helper.handleValidationError,
-  masterExpenseTypeController.update
+  masterIncomeTypeController.update
 );
 
 /**
  * @swagger
- * /api/master-expense-type/{id}:
+ * /api/master-income-type/{id}:
  *  delete:
- *    summary: Delete Master Expense Type by ID
- *    tags: [Master Expense Type]
+ *    summary: Delete Master Income Type by ID
+ *    tags: [Master Income Type]
  *    parameters:
  *      - in: path
  *        name: id
  *        required: true
  *        schema:
  *          type: string
- *        description: Master Expense Type ID
+ *        description: Master Income Type ID
  *      - in: query
  *        name: hard
  *        required: false
@@ -182,20 +167,20 @@ router.put(
  *      - BearerAuth: []
  *    responses:
  *      200:
- *        description: Master Expense Type Deleted
+ *        description: Master Income Type Deleted
  *      401:
  *        description: Invalid Token
  *      404:
- *        description: Master Expense Type not found
+ *        description: Master Income Type not found
  *      500:
  *        description: Server Error
  */
 //delete
 router.delete(
   "/:id",
-  masterExpenseTypeValidator.checkId(),
+  masterIncomeTypeValidator.checkId(),
   Helper.handleValidationError,
-  masterExpenseTypeController.remove
+  masterIncomeTypeController.remove
 );
 /******************************* CRUD APIS END *******************************/
 

@@ -1,4 +1,4 @@
-import express, { Express} from "express";
+import express, { Express } from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import { Application, Request, Response } from "express";
@@ -9,7 +9,14 @@ import path from "path";
 import { mongoParamsDTO } from "./dtos/mongo.dtos";
 import { notFoundHandler } from "./middlewares/not-found";
 
-import { userRouter, masterExpenseTypeRouter } from "./routes";
+import {
+  userRouter,
+  masterExpenseTypeRouter,
+  masterIncomeTypeRouter,
+  masterSavingsTypeRouter,
+  masterRewardRouter,
+  commonRouter,
+} from "./routes";
 import { uploadSeeds } from "./lib/seederFunction";
 import { setupSwagger } from "./lib/swagger";
 
@@ -80,6 +87,10 @@ export const createServer = async (): Promise<Application> => {
   //routes
   app.use("/api/user", userRouter);
   app.use("/api/master-expense-type", masterExpenseTypeRouter);
+  app.use("/api/master-income-type", masterIncomeTypeRouter);
+  app.use("/api/master-savings-type", masterSavingsTypeRouter);
+  app.use("/api/master-reward", masterRewardRouter);
+  app.use("/api/common", commonRouter);
   app.use(notFoundHandler);
 
   interface Error {
