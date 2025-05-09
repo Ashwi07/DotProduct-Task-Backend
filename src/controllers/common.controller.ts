@@ -9,10 +9,13 @@ import {
 class CommonController {
   async getAllMaster(req: Request, res: Response) {
     try {
-      const expenseTypes = await MasterExpenseTypeService.getAll();
-      const incomeTypes = await MasterIncomeTypeService.getAll();
-      const savingsTypes = await MasterSavingsTypeService.getAll();
-      const rewards = await MasterRewardService.getAll();
+      const [expenseTypes, incomeTypes, savingsTypes, rewards] =
+        await Promise.all([
+          MasterExpenseTypeService.getAll(),
+          MasterIncomeTypeService.getAll(),
+          MasterSavingsTypeService.getAll(),
+          MasterRewardService.getAll(),
+        ]);
 
       return res.status(200).json({
         statusCode: 106101,

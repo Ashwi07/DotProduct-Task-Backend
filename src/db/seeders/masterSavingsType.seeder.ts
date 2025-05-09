@@ -1,4 +1,4 @@
-import { masterIncomeTypeModel } from "../models";
+import { masterSavingsTypeModel } from "../models";
 
 //data to be inserted into the table
 const data = [
@@ -19,10 +19,10 @@ const data = [
   },
 ];
 
-class MasterIncomeTypeSeeder {
+class MasterSavingsTypeSeeder {
   //check if table is empty
   async shouldRun() {
-    return masterIncomeTypeModel
+    return masterSavingsTypeModel
       .countDocuments()
       .exec()
       .then((count) => count === 0);
@@ -30,13 +30,13 @@ class MasterIncomeTypeSeeder {
 
   //add data
   async run() {
-    return masterIncomeTypeModel.create(data);
+    return masterSavingsTypeModel.create(data);
   }
 
   //empty table
   async drop() {
-    return masterIncomeTypeModel.deleteMany();
+    return masterSavingsTypeModel.deleteMany();
   }
 }
 
-export default new MasterIncomeTypeSeeder();
+export default new MasterSavingsTypeSeeder();
