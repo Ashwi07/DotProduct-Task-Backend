@@ -10,7 +10,7 @@ router.use(AuthMiddleware.verifyToken);
 /******************************* CRUD APIS START *******************************/
 /**
  * @swagger
- * /api/common:
+ * /api/common/get-all-master:
  *  get:
  *    summary: Get all Master Data
  *    tags: [Common]
@@ -25,7 +25,7 @@ router.use(AuthMiddleware.verifyToken);
  *        description: Server Error
  */
 //get all
-router.get("/", commonController.getAllMaster);
+router.get("/get-all-master", commonController.getAllMaster);
 /******************************* CRUD APIS END *******************************/
 
 export default router;
