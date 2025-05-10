@@ -4,6 +4,7 @@ import {
   addMasterRewardDTO,
   editMasterRewardDTO,
 } from "../dtos/masterReward.dtos";
+
 class MasterRewardController {
   /***************************************** CRUD APIS START *********************************************/
 
@@ -95,7 +96,7 @@ class MasterRewardController {
   async update(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const { name, amount } = req.body;
+      const { name, amount, isClaimed } = req.body;
 
       //check if reward type exists
       const checkData = await MasterRewardService.checkData({
@@ -105,6 +106,8 @@ class MasterRewardController {
       if (checkData) {
         let payload: editMasterRewardDTO = {
           name,
+          amount,
+          isClaimed,
         };
 
         const data = await MasterRewardService.update(id, payload);

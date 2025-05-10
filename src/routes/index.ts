@@ -4,6 +4,7 @@ import masterIncomeTypeRouter from "./masterIncomeType.route";
 import masterSavingsTypeRouter from "./masterSavingsType.route";
 import masterRewardRouter from "./masterReward.route";
 import commonRouter from "./common.route";
+import budgetRouter from "./budget.route";
 
 export {
   userRouter,
@@ -12,4 +13,5 @@ export {
   masterSavingsTypeRouter,
   masterRewardRouter,
   commonRouter,
+  budgetRouter,
 };

@@ -9,6 +9,6 @@ export interface editMasterExpenseTypeDTO {
 
 export interface checkMasterExpenseTypeDTO {
   _id?: string;
-  name?: string;
+  name?: string | { $nin: string[] };
   isDeleted?: boolean;
 }

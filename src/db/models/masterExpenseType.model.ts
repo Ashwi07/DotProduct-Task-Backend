@@ -12,7 +12,6 @@ const MasterExpenseTypeSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      unique: true,
     },
     isDeleted: {
       type: Boolean,
@@ -21,6 +20,16 @@ const MasterExpenseTypeSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+  }
+);
+
+MasterExpenseTypeSchema.index(
+  {
+    name: 1,
+  },
+  {
+    unique: true,
+    partialFilterExpression: { isDeleted: false },
   }
 );
 

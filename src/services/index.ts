@@ -4,6 +4,7 @@ import CognitoService from "./cognito.service";
 import MasterIncomeTypeService from "./masterIncomeType.service";
 import MasterSavingsTypeService from "./masterSavingsType.service";
 import MasterRewardService from "./masterReward.service";
+import BudgetService from "./budget.service";
 
 export {
   UserService,
@@ -12,4 +13,5 @@ export {
   MasterIncomeTypeService,
   MasterSavingsTypeService,
   MasterRewardService,
+  BudgetService,
 };

@@ -7,9 +7,9 @@ import {
 
 class MasterExpenseTypeService {
   /************************** CRUD SERVICES START **************************/
-  static async getAll() {
+  static async getAll(where: checkMasterExpenseTypeDTO = {}) {
     return await masterExpenseTypeModel
-      .find({ isDeleted: false })
+      .find({ ...where, isDeleted: false })
       .sort({ createdAt: -1 });
   }
 

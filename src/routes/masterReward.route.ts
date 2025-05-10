@@ -130,6 +130,9 @@ router.post(
  *                type: number
  *                minimum: 1
  *                example: 2000
+ *              isClaimed:
+ *                type: boolean
+ *                example: false
  *    security:
  *      - BearerAuth: []
  *    responses:

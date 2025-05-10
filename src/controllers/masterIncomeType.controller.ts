@@ -4,6 +4,7 @@ import {
   addMasterIncomeTypeDTO,
   editMasterIncomeTypeDTO,
 } from "../dtos/masterIncomeType.dtos";
+
 class MasterIncomeTypeController {
   /***************************************** CRUD APIS START *********************************************/
 

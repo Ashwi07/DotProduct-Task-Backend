@@ -53,6 +53,13 @@ class MasterRewardValidator {
         .bail()
         .isInt({ min: 1 })
         .withMessage("Amount must be greater than 0"),
+      body("isClaimed")
+        .optional()
+        .notEmpty()
+        .withMessage("Claimed cannot be empty")
+        .bail()
+        .isBoolean()
+        .withMessage("Claimed should be a boolean value"),
     ];
   }
 }

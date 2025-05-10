@@ -4,6 +4,7 @@ export interface IMasterReward {
   _id: mongoose.Types.ObjectId;
   name: string;
   amount: number;
+  isClaimed: boolean;
   isDeleted: boolean;
 }
 
@@ -13,11 +14,14 @@ const MasterRewardSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      unique: true,
     },
     amount: {
       type: Number,
       required: true,
+    },
+    isClaimed: {
+      type: Boolean,
+      default: false,
     },
     isDeleted: {
       type: Boolean,
@@ -26,6 +30,16 @@ const MasterRewardSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+  }
+);
+
+MasterRewardSchema.index(
+  {
+    name: 1,
+  },
+  {
+    unique: true,
+    partialFilterExpression: { isDeleted: false, isClaimed: false },
   }
 );
 

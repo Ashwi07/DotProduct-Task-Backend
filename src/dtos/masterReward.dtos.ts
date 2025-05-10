@@ -6,6 +6,7 @@ export interface addMasterRewardDTO {
 export interface editMasterRewardDTO {
   name?: string;
   amount?: number;
+  isClaimed?: boolean;
   isDeleted?: boolean;
 }
 
@@ -13,5 +14,6 @@ export interface checkMasterRewardDTO {
   _id?: string;
   name?: string;
   amount?: number;
+  isClaimed?: boolean;
   isDeleted?: boolean;
 }

@@ -4,6 +4,7 @@ import {
   addMasterSavingsTypeDTO,
   editMasterSavingsTypeDTO,
 } from "../dtos/masterSavingsType.dtos";
+
 class MasterSavingsTypeController {
   /***************************************** CRUD APIS START *********************************************/
 
