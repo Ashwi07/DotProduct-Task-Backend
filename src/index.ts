@@ -14,7 +14,6 @@ import {
   masterExpenseTypeRouter,
   masterIncomeTypeRouter,
   masterSavingsTypeRouter,
-  masterRewardRouter,
   commonRouter,
   budgetRouter,
   transactionRouter,
@@ -91,7 +90,6 @@ export const createServer = async (): Promise<Application> => {
   app.use("/api/master-expense-type", masterExpenseTypeRouter);
   app.use("/api/master-income-type", masterIncomeTypeRouter);
   app.use("/api/master-savings-type", masterSavingsTypeRouter);
-  app.use("/api/master-reward", masterRewardRouter);
   app.use("/api/common", commonRouter);
   app.use("/api/budget", budgetRouter);
   app.use("/api/transaction", transactionRouter);
