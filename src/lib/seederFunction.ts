@@ -5,7 +5,6 @@ import { mongoParamsDTO } from "../dtos/mongo.dtos";
 import {
   masterExpensenseTypeSeeder,
   masterIncomeTypeSeeder,
-  masterRewardSeeder,
   masterSavingsTypeSeeder,
 } from "../db/seeders";
 
@@ -16,7 +15,6 @@ const seeds = [
   masterExpensenseTypeSeeder,
   masterIncomeTypeSeeder,
   masterSavingsTypeSeeder,
-  masterRewardSeeder,
 ];
 
 export const uploadSeeds = async (exit = true) => {
