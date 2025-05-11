@@ -8,6 +8,7 @@ Secret has is added to apis to provide additional security
 All apis need token authentication other than login
 Budget apis have sorting added to them for category field
 Transaction api has sorting, searching and filters available as per documented
+Dashboard api is a single api that handles different dashboard daata
 
 Api documentation is available at GET {api-url}/api-docs
 

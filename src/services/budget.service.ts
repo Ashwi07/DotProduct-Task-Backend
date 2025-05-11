@@ -50,6 +50,32 @@ class BudgetService {
       isDeleted: false,
     });
   }
+
+  static async getSum(where: checkBudgetDTO) {
+    const result = await budgetModel.aggregate([
+      {
+        $match: { ...where, isDeleted: false },
+      },
+      {
+        $group: {
+          _id: null,
+          totalAmount: { $sum: "$amount" },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          totalAmount: 1,
+        },
+      },
+    ]);
+
+    return result[0]?.totalAmount || 0;
+  }
+
+  static async getMonthData(where: checkBudgetDTO) {
+    return await budgetModel.find({ ...where, isDeleted: false });
+  }
   /************************** HELPER SERVICES END **************************/
 }
 

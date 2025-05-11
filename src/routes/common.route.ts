@@ -1,6 +1,8 @@
 import express from "express";
 import { commonController } from "../controllers";
 import AuthMiddleware from "../middlewares/auth.middleware";
+import helper from "../middlewares/helper";
+import { commonVaidator } from "../middlewares/validators";
 
 const router = express.Router();
 
@@ -45,6 +47,43 @@ router.get("/get-all-master", commonController.getAllMaster);
  */
 //get all
 router.get("/get-sub-types", commonController.getSubTypes);
+
+/**
+ * @swagger
+ * /api/common/get-dashboard-details/{month}/{year}:
+ *  get:
+ *    summary: Get Dashboard
+ *    parameters:
+ *      - in: path
+ *        name: month
+ *        required: true
+ *        schema:
+ *          type: number
+ *        description: Selected month
+ *      - in: path
+ *        name: year
+ *        required: true
+ *        schema:
+ *          type: number
+ *        description: Selected year
+ *    tags: [Common]
+ *    security:
+ *      - BearerAuth: []
+ *    responses:
+ *      200:
+ *        description: Dashboard Details
+ *      401:
+ *        description: Invalid Token
+ *      500:
+ *        description: Server Error
+ */
+//get all
+router.get(
+  "/get-dashboard-details/:month/:year",
+  commonVaidator.checkGetDashboardDetails(),
+  helper.handleValidationError,
+  commonController.getDashboardDetails
+);
 /******************************* CRUD APIS END *******************************/
 
 export default router;

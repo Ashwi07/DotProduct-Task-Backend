@@ -63,6 +63,43 @@ class TransactionService {
       isDeleted: false,
     });
   }
+
+  static async getCategorizedSum(where: checkTransactionDTO) {
+    const result = await transactionModel.aggregate([
+      {
+        $match: { ...where, isDeleted: false },
+      },
+      {
+        $group: {
+          _id: "$category",
+          totalAmount: { $sum: "$amount" },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          category: "$_id",
+          totalAmount: 1,
+        },
+      },
+    ]);
+
+    const summary: Record<string, number> = {
+      Income: 0,
+      Savings: 0,
+      Expense: 0,
+    };
+
+    result.forEach((item) => {
+      summary[item.category] = item.totalAmount;
+    });
+
+    return summary;
+  }
+
+  static async getMonthData(where: checkTransactionDTO) {
+    return await transactionModel.find({ ...where, isDeleted: false });
+  }
   /************************** HELPER SERVICES END **************************/
 }
 
