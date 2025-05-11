@@ -7,8 +7,10 @@ import {
 } from "../services";
 
 class CommonController {
+  //get all the master data
   async getAllMaster(req: Request, res: Response) {
     try {
+      // complete all promises at once to reduce time
       const [expenseTypes, incomeTypes, savingsTypes, rewards] =
         await Promise.all([
           MasterExpenseTypeService.getAll(),
@@ -38,8 +40,10 @@ class CommonController {
     }
   }
 
+  // get sub categories only
   async getSubTypes(req: Request, res: Response) {
     try {
+      //commplete all primises at once to reduce time
       const [expenseTypes, incomeTypes, savingsTypes] = await Promise.all([
         MasterExpenseTypeService.getAll(),
         MasterIncomeTypeService.getAll(),

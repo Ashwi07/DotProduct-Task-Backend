@@ -12,6 +12,7 @@ class BudgetController {
     try {
       const { month, year } = req.params;
 
+      // monthly data query
       let whereQuery = {
         month: parseInt(month),
         year: parseInt(year),
@@ -90,6 +91,7 @@ class BudgetController {
     try {
       const { category, description, amount, month, year } = req.body;
 
+      // check if category exists
       const checkCategory = await MasterExpenseTypeService.checkData({
         name: category,
         isDeleted: false,
@@ -148,6 +150,7 @@ class BudgetController {
         isDeleted: false,
       });
       if (checkData) {
+        // check if category exists
         if (category) {
           const checkCategory = await MasterExpenseTypeService.checkData({
             name: category,

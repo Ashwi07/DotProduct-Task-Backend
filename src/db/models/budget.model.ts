@@ -41,6 +41,7 @@ const BudgetSchema = new mongoose.Schema(
   }
 );
 
+// combination of category, month and year must be unique for all non soft deleted data
 BudgetSchema.index(
   {
     category: 1,

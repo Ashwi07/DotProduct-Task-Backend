@@ -27,6 +27,7 @@ class TransactionController {
       const startDate = new Date(parseInt(year), parseInt(month), 1);
       const endDate = new Date(parseInt(year), parseInt(month) + 1, 1);
 
+      // get selected months data
       let whereQuery: checkTransactionDTO = {
         transactionDate: {
           $lt: endDate,
@@ -34,6 +35,7 @@ class TransactionController {
         },
       };
 
+      // search in name and description
       search.$or = [
         {
           name: {
@@ -77,6 +79,7 @@ class TransactionController {
         sortBy.createdAt = -1;
       }
 
+      // filter
       let filter = req.query.filter || {};
       if (filter && typeof filter == "string") {
         filter = decodeURIComponent(filter);
@@ -106,6 +109,7 @@ class TransactionController {
         skip,
         limit
       );
+      // get total count
       const total = await TransactionService.getTotalCount(whereQuery, search);
 
       return res.status(200).json({
@@ -159,6 +163,7 @@ class TransactionController {
       const { name, description, category, subType, amount, transactionDate } =
         req.body;
 
+      // check sub category for the particular category
       if (category === "Expense") {
         const checkCategory = await MasterExpenseTypeService.checkData({
           name: subType,
@@ -245,6 +250,7 @@ class TransactionController {
         isDeleted: false,
       });
       if (checkData) {
+        // check sub category for the particular category
         if (category && subType) {
           if (category === "Expense") {
             const checkCategory = await MasterExpenseTypeService.checkData({

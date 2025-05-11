@@ -23,6 +23,7 @@ const MasterSavingsTypeSchema = new mongoose.Schema(
   }
 );
 
+// name must be unique for all non soft deleted data
 MasterSavingsTypeSchema.index(
   {
     name: 1,

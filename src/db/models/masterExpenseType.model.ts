@@ -23,6 +23,7 @@ const MasterExpenseTypeSchema = new mongoose.Schema(
   }
 );
 
+// name must be unique for all non soft deleted data
 MasterExpenseTypeSchema.index(
   {
     name: 1,

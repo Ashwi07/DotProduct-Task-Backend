@@ -33,6 +33,7 @@ const MasterRewardSchema = new mongoose.Schema(
   }
 );
 
+// name must be unique for all non soft deleted data
 MasterRewardSchema.index(
   {
     name: 1,

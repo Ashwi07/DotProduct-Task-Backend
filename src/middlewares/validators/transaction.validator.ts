@@ -69,6 +69,16 @@ class TransactionValidator {
         .bail()
         .isInt({ min: 1 })
         .withMessage("Amount must be greater than 0"),
+      body("transactionDate")
+        .trim()
+        .notEmpty()
+        .withMessage("Transaction Date is required")
+        .bail()
+        .isString()
+        .withMessage("Transaction Date must be a string")
+        .bail()
+        .isDate()
+        .withMessage("Transaction Date must be a date"),
     ];
   }
 
@@ -119,6 +129,17 @@ class TransactionValidator {
         .bail()
         .isInt({ min: 1 })
         .withMessage("Amount must be greater than 0"),
+      body("transactionDate")
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage("Transaction Date is required")
+        .bail()
+        .isString()
+        .withMessage("Transaction Date must be a string")
+        .bail()
+        .isDate()
+        .withMessage("Transaction Date must be a date"),
     ];
   }
 }

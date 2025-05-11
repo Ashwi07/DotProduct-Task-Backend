@@ -23,6 +23,7 @@ const MasterIncomeTypeSchema = new mongoose.Schema(
   }
 );
 
+// name must be unique for all non soft deleted data
 MasterIncomeTypeSchema.index(
   {
     name: 1,
