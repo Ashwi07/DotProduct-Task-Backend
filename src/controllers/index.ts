@@ -5,6 +5,7 @@ import masterSavingsTypeController from "./masterSavingsType.controller";
 import masterRewardController from "./masterReward.controller";
 import commonController from "./common.controller";
 import budgetController from "./budget.controller";
+import transactionController from "./transaction.controller";
 
 export {
   userController,
@@ -14,4 +15,5 @@ export {
   masterRewardController,
   commonController,
   budgetController,
+  transactionController,
 };

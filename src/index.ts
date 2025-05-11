@@ -17,6 +17,7 @@ import {
   masterRewardRouter,
   commonRouter,
   budgetRouter,
+  transactionRouter,
 } from "./routes";
 import { uploadSeeds } from "./lib/seederFunction";
 import { setupSwagger } from "./lib/swagger";
@@ -93,6 +94,7 @@ export const createServer = async (): Promise<Application> => {
   app.use("/api/master-reward", masterRewardRouter);
   app.use("/api/common", commonRouter);
   app.use("/api/budget", budgetRouter);
+  app.use("/api/transaction", transactionRouter);
   app.use(notFoundHandler);
 
   interface Error {

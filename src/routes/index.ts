@@ -5,6 +5,7 @@ import masterSavingsTypeRouter from "./masterSavingsType.route";
 import masterRewardRouter from "./masterReward.route";
 import commonRouter from "./common.route";
 import budgetRouter from "./budget.route";
+import transactionRouter from "./transaction.route";
 
 export {
   userRouter,
@@ -14,4 +15,5 @@ export {
   masterRewardRouter,
   commonRouter,
   budgetRouter,
+  transactionRouter,
 };

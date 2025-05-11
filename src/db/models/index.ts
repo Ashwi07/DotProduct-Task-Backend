@@ -4,6 +4,7 @@ import masterIncomeTypeModel from "./masterIncomeType.model";
 import masterSavingsTypeModel from "./masterSavingsType.model";
 import masterRewardModel from "./masterReward.model";
 import budgetModel from "./budget.model";
+import transactionModel from "./transaction.model";
 
 export {
   userModel,
@@ -12,4 +13,5 @@ export {
   masterSavingsTypeModel,
   masterRewardModel,
   budgetModel,
+  transactionModel,
 };

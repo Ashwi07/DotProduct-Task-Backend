@@ -26,6 +26,25 @@ router.use(AuthMiddleware.verifyToken);
  */
 //get all
 router.get("/get-all-master", commonController.getAllMaster);
+
+/**
+ * @swagger
+ * /api/common/get-sub-types:
+ *  get:
+ *    summary: Get Sub Types
+ *    tags: [Common]
+ *    security:
+ *      - BearerAuth: []
+ *    responses:
+ *      200:
+ *        description: List of Sub Types
+ *      401:
+ *        description: Invalid Token
+ *      500:
+ *        description: Server Error
+ */
+//get all
+router.get("/get-sub-types", commonController.getSubTypes);
 /******************************* CRUD APIS END *******************************/
 
 export default router;

@@ -5,6 +5,7 @@ import masterIncomeTypeValidator from "./masterIncomeType.validator";
 import masterSavingsTypeValidator from "./masterSavingsType.validator";
 import masterRewardValidtor from "./masterReward.validtor";
 import budgetValidator from "./budget.validator";
+import transactionValidator from "./transaction.validator";
 
 export {
   userValidator,
@@ -14,4 +15,5 @@ export {
   masterSavingsTypeValidator,
   masterRewardValidtor,
   budgetValidator,
+  transactionValidator
 };
