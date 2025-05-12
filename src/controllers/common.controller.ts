@@ -99,7 +99,7 @@ class CommonController {
           TransactionService.getMonthData(transactionWhereQuery),
         ]);
 
-        // map for easier handling
+      // map for easier handling
       const transactionMap = new Map<string, number>();
 
       transactionMonth
@@ -179,6 +179,23 @@ class CommonController {
             );
           }
         });
+
+      const daysInMonth = new Date(
+        parseInt(year),
+        parseInt(month) + 1,
+        0
+      ).getDate();
+
+      for (let i = 1; i <= daysInMonth; i++) {
+        const date = new Date(parseInt(year), parseInt(month), i);
+        const dateStr = date.toISOString().split("T")[0];
+        if (!dailyExpenseMap.has(dateStr)) {
+          dailyExpenseMap.set(dateStr, 0);
+        }
+        if (!dailySavingsMap.has(dateStr)) {
+          dailySavingsMap.set(dateStr, 0);
+        }
+      }
 
       const dailyExpenseData = Array.from(
         dailyExpenseMap,
